@@ -1,126 +1,29 @@
-import React from 'react';
-import './App.css';
+import React, { useMemo, useReducer } from "react";
 
-export default () => (
-  <div className="wrapper">
-    <div className="menu-summary">
-      <div className="container">
-        <div className="row">
-          <div className="col-6 menu-summary-left">
-            <span>5 items</span>
-          </div>
-          <div className="col-6 menu-summary-right">
-            6x <span className="dietary">ve</span>
-            4x <span className="dietary">v</span>
-            12x <span className="dietary">n!</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="container menu-builder">
-      <div className="row">
-        <div className="col-4">
-          <ul className="item-picker">
-          <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-            </li>
-          </ul>
-        </div>
-        <div className="col-8">
-          <h2>Menu preview</h2>
-          <ul className="menu-preview">
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-              <button className="remove-item">x</button>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-              <button className="remove-item">x</button>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-              <button className="remove-item">x</button>
-            </li>
-            <li className="item">
-              <h2>Dummy item</h2>
-              <p>
-                <span className="dietary">ve</span>
-                <span className="dietary">v</span>
-                <span className="dietary">n!</span>
-              </p>
-              <button className="remove-item">x</button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-);
+import list from "./item";
+import "./assets/css/App.css";
+import Home from "./pages/Home";
+import HomeContext from "./contexts/HomeContext";
+import { homeReducer } from "./reducers/homeReducer";
+
+const initialState = {
+    menus: list,
+    addedMenus: [],
+    addedDietaries: {},
+    totalAddedMenuNum: 0,
+    totalAddedDietaryNum: 0
+};
+
+const App = () => {
+    const [state, dispatch] = useReducer(homeReducer, initialState);
+
+    const contextValue = useMemo(() => {
+        return { state, dispatch };
+    }, [state, dispatch]);
+
+    return <HomeContext.Provider value={ contextValue }>
+        <Home />
+    </HomeContext.Provider>
+};
+
+export default App;
