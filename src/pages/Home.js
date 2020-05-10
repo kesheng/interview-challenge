@@ -3,9 +3,10 @@ import React from "react";
 import MenuContainer from "./../components/MenuContainer";
 import MenuPreviewContainer from "./../components/MenuPreviewContainer";
 import SummaryContainerHOC from "./../components/SummaryContainerHOC";
-import SummaryContainer from "./../components/SummaryContainer";
+import SummaryLeft from "./../components/SummaryLeft";
+import SummaryRight from "./../components/SummaryRight";
 
-const SummaryContainerComponent = SummaryContainerHOC(SummaryContainer);
+const SummaryContainerComponent = SummaryContainerHOC(SummaryLeft, SummaryRight);
 
 const Home = () => {
     return <div className="wrapper">
