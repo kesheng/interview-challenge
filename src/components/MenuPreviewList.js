@@ -12,7 +12,7 @@ const MenuPreviewList = (props) => {
         <ul className="menu-preview">
             {
                 menus.map(item => {
-                    return <MenuPreviewListItem key={item.id} {...item} />
+                    return <MenuPreviewListItem key={ item.id } { ...item } />
                 })
             }
         </ul>

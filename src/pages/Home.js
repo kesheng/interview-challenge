@@ -2,16 +2,12 @@ import React from "react";
 
 import MenuContainer from "./../components/MenuContainer";
 import MenuPreviewContainer from "./../components/MenuPreviewContainer";
-import SummaryContainerHOC from "./../components/SummaryContainerHOC";
-import SummaryLeft from "./../components/SummaryLeft";
-import SummaryRight from "./../components/SummaryRight";
-
-const SummaryContainerComponent = SummaryContainerHOC(SummaryLeft, SummaryRight);
+import SummaryContainer from "./../components/SummaryContainer";
 
 const Home = () => {
     return <div className="wrapper">
         <div className="menu-summary">
-            <SummaryContainerComponent />
+            <SummaryContainer />
         </div>
         <div className="container menu-builder">
             <div className="row">
